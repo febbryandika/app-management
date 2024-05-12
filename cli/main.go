@@ -44,6 +44,7 @@ func Report() {
 	}
 }
 
+
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	for {
@@ -60,6 +61,7 @@ func main() {
 		fmt.Print("Silahkan masukkan nomor: ")
 		input, _ := reader.ReadString('\n')
 		input = strings.TrimSpace(input)
+
 
 		switch input {
 		case "1":
@@ -81,4 +83,5 @@ func main() {
 			fmt.Println("Input invalid:")
 		}
 	}
+
 }

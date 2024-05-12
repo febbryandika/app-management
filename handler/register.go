@@ -1,5 +1,6 @@
 package handler
 
+
 import (
 	"bufio"
 	"fmt"
@@ -50,5 +51,6 @@ func Register() {
 	}
 
 	fmt.Println("User Registered Succesfully")
+
 
 }
