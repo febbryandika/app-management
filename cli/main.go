@@ -38,9 +38,11 @@ func Report() {
 			if err != nil {
 				fmt.Println("Error getting the database : ", err)
 			}
-			for index, value := range recap {
-				fmt.Printf("index : %d\n %+v\n", index, value)
+			for _, value := range recap {
+				fmt.Printf(" %+v\n", value)
+
 			}
+
 		case "5":
 			fmt.Println("Exit fitur....")
 			return
