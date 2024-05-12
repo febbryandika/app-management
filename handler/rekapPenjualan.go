@@ -13,7 +13,12 @@ func RekapPenjualan() ([]entity.Sale, error) {
 	if err != nil {
 		return recapSales, fmt.Errorf("error getting the database : %v", err)
 	}
-	QuerySalesRecap := "SELECT sale_id, product_id, quantity, sale_date FROM sales" // rekapPenjualan query
+	QuerySalesRecap :=
+		`
+	SELECT sale_id, product_name, quantity, sale_date
+	FROM sales
+	INNER JOIN products ON sales.product_id = products.product_id
+	` // rekapPenjualan query
 
 	rows, err := db.Query(QuerySalesRecap)
 	if err != nil {
@@ -23,7 +28,7 @@ func RekapPenjualan() ([]entity.Sale, error) {
 
 	for rows.Next() {
 		var s entity.Sale
-		if err = rows.Scan(&s.ID, &s.ProductID, &s.Quantity, &s.SalesDate); err != nil {
+		if err = rows.Scan(&s.SaleID, &s.ProductName, &s.Quantity, &s.SalesDate); err != nil {
 			return nil, err
 		}
 		recapSales = append(recapSales, s)
