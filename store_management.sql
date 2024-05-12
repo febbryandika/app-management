@@ -23,7 +23,8 @@ CREATE TABLE IF NOT EXISTS staff (
 CREATE TABLE IF NOT EXISTS users(
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL UNIQUE,
     security_question VARCHAR(255) NOT NULL,
     security_answer VARCHAR(255) NOT NULL
 );
+
