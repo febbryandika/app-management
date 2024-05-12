@@ -32,7 +32,13 @@ func Report() {
 		case "3":
 			handler.TambahStaff()
 		case "4":
-			handler.RekapPenjualan()
+			recap, err := handler.RekapPenjualan()
+			if err != nil {
+				fmt.Println("Error getting the database : ", err)
+			}
+			for index, value := range recap {
+				fmt.Printf("index : %d\n %+v\n", index, value)
+			}
 		case "5":
 			fmt.Println("Exit fitur....")
 			return
@@ -41,7 +47,6 @@ func Report() {
 		}
 	}
 }
-
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
@@ -57,7 +62,6 @@ func main() {
 		fmt.Print("Silahkan masukkan nomor: ")
 		input, _ := reader.ReadString('\n')
 		input = strings.TrimSpace(input)
-
 
 		switch input {
 		case "1":
