@@ -34,9 +34,14 @@ func Report() {
 		case "3":
 			handler.TambahStaff()
 		case "4":
-			_, err := handler.RekapPenjualan()
+
+			recap, err := handler.RekapPenjualan()
 			if err != nil {
 				fmt.Println("Error getting the database : ", err)
+			}
+			for _, value := range recap {
+				fmt.Printf(" %+v\n", value)
+
 			}
 
 		case "5":
