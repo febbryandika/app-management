@@ -36,3 +36,10 @@ INSERT INTO staff (staff_name, email, position) VALUES
 ('Bob Johnson', 'bob.johnson@example.com', 'Store Manager'),
 ('Alice Lee', 'alice.lee@example.com', 'Cashier'),
 ('Michael Brown', 'michael.brown@example.com', 'Stock Clerk');
+
+INSERT INTO users (username, password, security_question, security_answer) VALUES
+('john_doe', 'password123', 'What is your mother\'s maiden name?', 'Smith'),
+('jane_smith', 'letmein', 'What city were you born in?', 'New York'),
+('bob_johnson', 'securepass', 'What is your favorite color?', 'Blue'),
+('alice_lee', 'abc123', 'What is the name of your first pet?', 'Fluffy'),
+('michael_brown', 'qwerty', 'What is the make and model of your first car?', 'Toyota Corolla');

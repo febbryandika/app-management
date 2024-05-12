@@ -19,3 +19,11 @@ CREATE TABLE IF NOT EXISTS staff (
     email VARCHAR(50) UNIQUE NOT NULL,
     position VARCHAR(50) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS users(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    security_question VARCHAR(255) NOT NULL,
+    security_answer VARCHAR(255) NOT NULL
+);
