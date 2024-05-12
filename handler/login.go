@@ -6,17 +6,21 @@ import (
 	"fmt"
 	"os"
 	"simulasi-pair-project/config"
+	"simulasi-pair-project/entity"
 	"strings"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
-func Login() (error, error) {
+func Login() (string, error) {
 
+	var user entity.User
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Println("Masukkan username")
 	username, _ := reader.ReadString('\n')
 	username = strings.TrimSpace(username)
 
-	fmt.Println("Masukkan username")
+	fmt.Println("Masukkan password")
 	password, _ := reader.ReadString('\n')
 	password = strings.TrimSpace(password)
 
@@ -24,17 +28,25 @@ func Login() (error, error) {
 
 	db, err := config.GetDB()
 	if err != nil {
-		return nil, fmt.Errorf("error when connecting to db: %v", err)
+		return "", fmt.Errorf("error when connecting to db: %v", err)
 	}
 
 	defer db.Close()
-	var uname, pwd string
-	err = db.QueryRow(query, username).Scan(&uname, &pwd)
+	err = db.QueryRow(query, username).Scan(&user.UserName, &user.Password)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			fmt.Println("")
+			return "", fmt.Errorf("user or password doesn't match: ")
+		} else {
+			return "", err
 		}
 	}
 
-	return nil, nil
+	// check password
+	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
+	if err != nil {
+		return "", fmt.Errorf("user or password doesn't match: ")
+	}
+
+	fmt.Println("Login succeed")
+	return user.UserName, nil
 }

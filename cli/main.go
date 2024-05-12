@@ -13,13 +13,15 @@ func Report() {
 	for {
 		fmt.Println("=========================")
 		fmt.Println("       Fitur Product")
-		fmt.Println("=========================\n")
+		fmt.Println("=========================")
+		fmt.Println()
 
 		fmt.Println("1. Tambah Produk ")
 		fmt.Println("2. Ubah Stok Produk")
 		fmt.Println("3. Tambah Staff")
 		fmt.Println("4. Rekap Penjualan")
-		fmt.Println("5. Exit\n")
+		fmt.Println("5. Exit")
+		fmt.Println()
 		fmt.Print("Silahkan masukkan nomor: ")
 		input, _ := reader.ReadString('\n')
 		input = strings.TrimSpace(input)
@@ -47,12 +49,14 @@ func main() {
 	for {
 		fmt.Println("=========================")
 		fmt.Println("Selamat datang di Product")
-		fmt.Println("=========================\n")
+		fmt.Println("=========================")
+		fmt.Println()
 
 		fmt.Println("1. Login ")
 		fmt.Println("2. Register")
 		fmt.Println("3. Forgot Password")
-		fmt.Println("4. Exit\n")
+		fmt.Println("4. Exit")
+		fmt.Println()
 		fmt.Print("Silahkan masukkan nomor: ")
 		input, _ := reader.ReadString('\n')
 		input = strings.TrimSpace(input)
@@ -64,7 +68,7 @@ func main() {
 				fmt.Println("Error connecting to db", err)
 				break
 			}
-			_ = user
+			fmt.Println("Hello, ", user)
 			Report()
 		case "2":
 			handler.Register()
