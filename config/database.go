@@ -3,9 +3,10 @@ package config
 import (
 	"database/sql"
 	"fmt"
+	"os"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
-	"os"
 )
 
 func GetDB() (*sql.DB, error) {
@@ -19,5 +20,17 @@ func GetDB() (*sql.DB, error) {
 		os.Getenv("DB_PASS"),
 		os.Getenv("DB_HOST"),
 		os.Getenv("DB_NAME")))
+
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
+	err = db.Ping()
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
 	return db, err
 }
