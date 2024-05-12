@@ -30,25 +30,13 @@ func Report() {
 		case "1":
 			handler.TambahProduk()
 		case "2":
-			recap, err := handler.UbahStok()
-			if err != nil {
-				fmt.Println("Error getting the database : ", err)
-			}
-			for _, value := range recap {
-				fmt.Printf(" %+v\n", value)
-
-			}
-
+			handler.UbahStok()
 		case "3":
 			handler.TambahStaff()
 		case "4":
-			recap, err := handler.RekapPenjualan()
+			_, err := handler.RekapPenjualan()
 			if err != nil {
 				fmt.Println("Error getting the database : ", err)
-			}
-			for _, value := range recap {
-				fmt.Printf(" %+v\n", value)
-
 			}
 
 		case "5":
